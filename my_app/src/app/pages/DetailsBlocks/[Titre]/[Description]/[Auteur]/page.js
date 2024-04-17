@@ -1,25 +1,17 @@
 "use client";
 import * as React from "react";
-import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-export default function DetailsBlocks() {
-  const searchParams = useSearchParams();
-  console.log("rrtr", searchParams);
-  //const Titre = searchParams.get("Titre")[0].title;
-  //const Description = searchParams.get("")[0].description;
-  //const Auteur = searchParams.get("")[0].auteur;
-
-  /*   const Titre = "Premier article";
-  const Description =
-    "C’est au xvie siècle, en particulier avec Francis Bacon (1561-1626), qu’est précisée l’idée que la science peut et doit s organiser en vue d une maîtrise de la nature et du développement des nations. En affirmant ainsi l’intérêt économique et politique du progrès scientifique, et la nécessité pour les gouvernants de ne pas mésestimer la valeur de leurs savants, Bacon pose les bases d une recherche scientifique institutionnalisée, encadrée par une politique scientifique participant à l’organisation des travaux des savants pour mieux servir le progrès économique et militaire de la nation. Dans son utopie de la Nouvelle Atlantide, Bacon imagine en particulier une « Maison de Salomon », institution préfigurant nos modernes établissements scientifiques, où sont rassemblés tous les moyens d une exploration scientifique du monde1. Cette Maison de Salomon inspirera la création de la Royal Society, en 16602.";
-  const Auteur = "chourouk Hentati"; */
-
+export default function DetailsBlocks({ params }) {
+  const Titre = decodeURIComponent(params.Titre);
+  const Description = decodeURIComponent(params.Description);
+  const Auteur = decodeURIComponent(params.Auteur);
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);
+
   return (
     <Grid container justifyContent="center">
       <Box

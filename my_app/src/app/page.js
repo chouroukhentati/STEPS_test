@@ -7,9 +7,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useState } from "react";
 
 export default function Blocks() {
-  const articles = [
+  const dataArticles = [
     {
       id: 1,
       title: "Premier article",
@@ -33,19 +34,17 @@ export default function Blocks() {
     },
   ];
 
+  const [articles, setArticles] = useState(dataArticles);
+
   // Créer une fonction de recherche
   function searchArticles(searchTerm) {
-    // Filtrer les articles en fonction du terme de recherche
-    const filteredArticles = articles.filter((article) =>
-      article.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredArticles = dataArticles.filter(
+      (article) =>
+        article.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        article.auteur?.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    return filteredArticles;
+    setArticles(filteredArticles);
   }
-
-  // Utilisation de la fonction de recherche
-  const searchTerm = "deuxième"; // Terme de recherche saisi par l'utilisateur
-  const searchResults = searchArticles(searchTerm);
-  console.log(searchResults); // Affiche les résultats de la recherche
 
   return (
     <div>
@@ -53,11 +52,12 @@ export default function Blocks() {
         <AppBar color="grey" position="static">
           <Toolbar>
             <SearchIcon />
-
             <InputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              onChange={(e) => searchArticles(e.target.value)}
+              onChange={(e) => {
+                searchArticles(e.target.value);
+              }}
             />
           </Toolbar>
         </AppBar>

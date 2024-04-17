@@ -22,6 +22,7 @@ export default function Block({ Titre, Description, Auteur }) {
   } else {
     borderColor = "2px solid gray";
   }
+
   return (
     <Box
       height={200}
@@ -49,7 +50,6 @@ export default function Block({ Titre, Description, Auteur }) {
               variant="body1"
               style={{
                 fontSize: "12px",
-
                 display: "-webkit-box",
                 WebkitLineClamp: 3,
                 WebkitBoxOrient: "vertical",

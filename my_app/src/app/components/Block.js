@@ -6,10 +6,13 @@ import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import Link from "next/link";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useRouter } from "next/navigation";
 
 export default function Block({ Titre, Description, Auteur }) {
   const [like, setLike] = useState(0);
   const [dislike, setDislike] = useState(0);
+  const router = useRouter();
+
   let borderColor;
 
   if (like > dislike) {
@@ -57,15 +60,17 @@ export default function Block({ Titre, Description, Auteur }) {
             </Typography>
           </Grid>
           <Grid container justifyContent="flex-end">
-            <Link
-              href={{
-                pathname: `/pages/DetailsBlocks/${Titre}/${Description}/${Auteur}`,
-              }}
+            <Button
+              variant="text"
+              onClick={() =>
+                router.push(
+                  `/pages/DetailsBlocks/${Titre}/${Description}/${Auteur}`
+                )
+              }
             >
-              {" "}
               plus de détails
               <ChevronRightIcon />
-            </Link>
+            </Button>
           </Grid>
         </Grid>
         <Grid container justifyContent="flex-end" alignItems="center">

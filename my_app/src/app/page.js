@@ -36,7 +36,6 @@ export default function Blocks() {
 
   const [articles, setArticles] = useState(dataArticles);
 
-  // Créer une fonction de recherche
   function searchArticles(searchTerm) {
     const filteredArticles = dataArticles.filter(
       (article) =>
